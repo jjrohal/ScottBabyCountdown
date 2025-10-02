@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scott's Baby Boy Countdown: 90s Record Release!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for bold 90s look -->
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Bangers&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle, #111 60%, #1e1e1e 100%);
+      color: #fffb00;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Orbitron', 'Bangers', Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .grunge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0.22;
+      z-index: 0;
+      background: url('https://www.transparenttextures.com/patterns/grunge-wall.png');
+      background-size: cover;
+    }
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 60px 20px 20px 20px;
+      text-align: center;
+    }
+    .title {
+      font-family: 'Bangers', 'Impact', sans-serif;
+      font-size: 2.6em;
+      color: #00fff7;
+      text-shadow: 4px 4px 0 #ff00a8, 2px 2px 8px #000;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      animation: neon-flicker 2s infinite alternate;
+    }
+    @keyframes neon-flicker {
+      0% { filter: brightness(1.1); }
+      45% { filter: brightness(1.5); }
+      48% { filter: brightness(0.3); }
+      50% { filter: brightness(2); }
+      100% { filter: brightness(1.2); }
+    }
+    .subtitle {
+      font-size: 1.1em;
+      color: #fffb00;
+      margin-bottom: 32px;
+      letter-spacing: 1.5px;
+      text-shadow: 2px 2px 0 #333;
+    }
+    .vinyl {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 24px;
+      display: block;
+      animation: spin 7s linear infinite;
+    }
+    @keyframes spin {
+      0% {transform: rotate(0);}
+      100% {transform: rotate(360deg);}
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      font-size: 2em;
+      font-family: 'Orbitron', monospace;
+      color: #fffb00;
+      text-shadow: 2px 2px 8px #00fff7;
+      margin: 30px 0;
+    }
+    .cd-section {
+      background: rgba(0,0,0,0.7);
+      border-radius: 12px;
+      box-shadow: 0 0 8px #ff00a8;
+      padding: 16px 12px 8px 12px;
+      min-width: 70px;
+      margin: 0 3px;
+      border: 2px solid #00fff7;
+      text-align: center;
+    }
+    .cd-number {
+      font-size: 1.5em;
+      font-weight: bold;
+      display: block;
+    }
+    .cd-label {
+      font-size: 0.7em;
+      font-family: 'Bangers', Arial, sans-serif;
+      text-transform: uppercase;
+      color: #ff00a8;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+    .footer {
+      margin-top: 48px;
+      color: #fff;
+      font-size: 1em;
+      font-family: 'Bangers', Arial, sans-serif;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 8px #00fff7;
+    }
+    @media (max-width: 500px) {
+      .title { font-size: 2em; }
+      .vinyl { width: 140px; height: 140px; }
+      .countdown { font-size: 1.1em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grunge"></div>
+  <div class="container">
+    <div class="title">Scott's Baby Boy<br>Record Release!</div>
+    <div class="subtitle">The drop date: <span style="color:#ff00a8;">October 3, 2025</span></div>
+    <!-- Vinyl Record SVG -->
+    <svg class="vinyl" viewBox="0 0 250 250">
+      <circle cx="125" cy="125" r="120" fill="#181818" stroke="#00fff7" stroke-width="5"/>
+      <circle cx="125" cy="125" r="90" fill="#232323" stroke="#ff00a8" stroke-width="2"/>
+      <circle cx="125" cy="125" r="65" fill="#181818" stroke="#fffb00" stroke-width="3"/>
+      <circle cx="125" cy="125" r="25" fill="#ff00a8" stroke="#00fff7" stroke-width="2"/>
+      <circle cx="125" cy="125" r="10" fill="#fffb00"/>
+      <!-- Grunge cracks -->
+      <path d="M130 20 Q140 60 125 80 Q110 100 125 120" stroke="#fffb00" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M30 140 Q70 135 110 170" stroke="#ff00a8" stroke-width="1" fill="none" opacity="0.5"/>
+    </svg>
+    <div class="countdown" id="countdown">
+      <div class="cd-section"><span class="cd-number" id="days">-</span><span class="cd-label">Days</span></div>
+      <div class="cd-section"><span class="cd-number" id="hours">-</span><span class="cd-label">Hours</span></div>
+      <div class="cd-section"><span class="cd-number" id="minutes">-</span><span class="cd-label">Minutes</span></div>
+      <div class="cd-section"><span class="cd-number" id="seconds">-</span><span class="cd-label">Seconds</span></div>
+    </div>
+    <div class="footer">Are you ready for the drop?<br>
+      <span style="color:#ff00a8;">Scott's Baby Boy</span> debuts soon!<br>
+      <span style="font-size:0.8em;">© 2025 JJ Rohal & Friends. All rights reserved.</span>
+    </div>
+  </div>
+  <script>
+    // Set the release date to October 3, 2025, 00:00:00 local time
+    const releaseDate = new Date(2025, 9, 3, 0, 0, 0); // JS months are 0-indexed
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = releaseDate - now;
+
+      if (diff < 0) {
+        // Drop has arrived!
+        document.getElementById('countdown').innerHTML = `
+          <div class="cd-section">
+            <span class="cd-number" style="color:#00fff7; font-size:2em;">🎉</span>
+            <span class="cd-label">It's Here!</span>
+          </div>
+        `;
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * (1000 * 60 * 60 * 24);
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * (1000 * 60 * 60);
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * (1000 * 60);
+      const seconds = Math.floor(diff / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
